@@ -2,9 +2,11 @@ package site.yuyy.service;
 
 import java.util.Map;
 
+import site.yuyy.model.TUser;
+
 public interface UserService {
 
-	Map<String, Object> queryUserById(Integer userId);
+	TUser getUserById(Integer userId);
 	
-	int addUserColumns();
+	int addUserColumns(Map<String, String> columns);
 }

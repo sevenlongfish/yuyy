@@ -5,28 +5,32 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import site.yuyy.dao.UserDao;
+import site.yuyy.dao.TUserMapper;
+import site.yuyy.model.TUser;
 import site.yuyy.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
-	private UserDao userDao;
+	private TUserMapper userMapper;
 
 	/**
 	 * 根据id查询某条用户信息
 	 */
-	public Map<String, Object> queryUserById(Integer userId) {
+	@Override
+	public TUser getUserById(Integer id) {
 
-		return userDao.selUserById(userId);
+		return userMapper.selectByPrimaryKey(id);
 	}
 
 	/**
 	 * 为用户表添加列
 	 */
-	public int addUserColumns() {
+	@Override
+	public int addUserColumns(Map<String, String> columns) {
 
-		return userDao.addUserColumns();
+		return 0;
 	}
+
 }

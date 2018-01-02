@@ -1,13 +1,16 @@
 package site.yuyy.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import site.yuyy.model.TUser;
 import site.yuyy.service.UserService;
 
 @Controller
@@ -15,29 +18,27 @@ import site.yuyy.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-
-	@RequestMapping("/queryUserById")
-	public ModelAndView queryUserById(Integer userId){
-		Map<String, Object> userMap = userService.queryUserById(1);
+	
+	/**
+	 * 根据id获取用户
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping(value="/getUser", method={RequestMethod.GET})
+	public ModelAndView queryUserById(Integer id){
+		TUser user = userService.getUserById(id);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("USER_NAME", userMap.get("USER_NAME"));
+		mv.addObject("USER_NAME", user.getUserName());
 		mv.setViewName("index");
 		return mv;
-	}
-	
-	@RequestMapping("/addUser")
-	@ResponseBody
-	public String addUser(Integer userId, String userName, String user_email){
-		Map<String, Object> userMap = userService.queryUserById(1);
-		return userMap.toString();
 	}
 	
 	@RequestMapping("/addUserColumns")
 	@ResponseBody
 	public Integer addUserColumns(){
-		
-		int result = userService.addUserColumns();
+		Map<String, String> columns = new HashMap<String, String>();
+		int result = userService.addUserColumns(columns);
 		
 		return Integer.valueOf(result);
 	}
