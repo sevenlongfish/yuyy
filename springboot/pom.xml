@@ -13,7 +13,36 @@
   <name>springboot Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
+  <!-- 定义版本 -->
+  <properties>
+    <springbootstarter.version>1.5.9.RELEASE</springbootstarter.version>
+    <mysql.version>5.1.44</mysql.version>
+  </properties>
+  
   <dependencies>
+    <!-- springboot依赖 -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${springbootstarter.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>${springbootstarter.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+        <version>${springbootstarter.version}</version>
+    </dependency>
+    <!-- mysql -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+    </dependency>
+    
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

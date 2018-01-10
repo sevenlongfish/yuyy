@@ -13,6 +13,6 @@ public class HelloController {
 	@ResponseBody
 	public String sayHello(){
 		
-		return "Hello!";
+		return "Hello, world!";
 	}
 }
